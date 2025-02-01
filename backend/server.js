@@ -14,8 +14,17 @@ console.log('MongoDB URI:', process.env.MONGO_URI);
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+// CORS configuration
+const corsOptions = {
+    origin: ['https://truthguard-2.onrender.com', 'http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+    optionsSuccessStatus: 200
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.json());
 
